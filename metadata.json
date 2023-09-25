@@ -1,0 +1,256 @@
+{
+    "content_metadata": {
+        "copd": {
+            "ModelId": "COPDIS_02",
+            "ModelHash": "e7895647d6b6aed1e222d363f82f58231a1d3b975aa5dafc3ad30765",
+            "ModelType": "Complex",
+            "GenomeBuild": "GRCh38",
+            "TraitCategory": "Respiratory Health"
+        },
+        "gout": {
+            "ModelId": "URGOUT_02",
+            "ModelHash": "f8561523ac4215a03e54f05e227bed6e3bc223741be29cde124bfa41",
+            "ModelType": "Complex",
+            "GenomeBuild": "GRCh38",
+            "TraitCategory": "Musculoskeletal Health"
+        },
+        "asthma": {
+            "ModelId": "ASTHMA_03",
+            "ModelHash": "599b0bf192c58314bc0a5527a275c520887285ab051cc076bb71189b",
+            "ModelType": "Complex",
+            "GenomeBuild": "GRCh38",
+            "TraitCategory": "Respiratory Health"
+        },
+        "stroke": {
+            "ModelId": "STROKE_02",
+            "ModelHash": "c314cf23890335d7d5cf82f85bc9ebf07664453e308b1bdfa5015ba6",
+            "ModelType": "Complex",
+            "GenomeBuild": "GRCh38",
+            "TraitCategory": "Heart and Vascular Health"
+        },
+        "insomnia": {
+            "ModelId": "INSOMN_01",
+            "ModelHash": "aeb18ca0f8e1aeba7ecacf1c0c186c5ea5b817457d3a83a6449e9602",
+            "ModelType": "Complex",
+            "GenomeBuild": "GRCh38",
+            "TraitCategory": "Mental Health"
+        },
+        "melanoma": {
+            "ModelId": "MELANO_02",
+            "ModelHash": "235443982fb588897bc1a201b09d894e32c1829bb012fcc9a438de3f",
+            "ModelType": "Complex",
+            "GenomeBuild": "GRCh38",
+            "TraitCategory": "Cancer Predisposition"
+        },
+        "osteoporosis": {
+            "ModelId": "OSTEOP_02",
+            "ModelHash": "5c654e672cd44055bdf4c562d5fe6e8d0a41f0672e7cdc3f8f57d0a2",
+            "ModelType": "Complex",
+            "GenomeBuild": "GRCh38",
+            "TraitCategory": "Musculoskeletal Health"
+        },
+        "kidney_stones": {
+            "ModelId": "KIDNST_02",
+            "ModelHash": "8f2daf339a0a9d70a4a2d75ebb21599605d9e28a010bbe495511a61a",
+            "ModelType": "Complex",
+            "GenomeBuild": "GRCh38",
+            "TraitCategory": "Metabolic Health"
+        },
+        "schizophrenia": {
+            "ModelId": "SCZPHR_02",
+            "ModelHash": "3783640d685f005595e565ed1f3293241a23a4a03eb4013395460b91",
+            "ModelType": "Complex",
+            "GenomeBuild": "GRCh38",
+            "TraitCategory": "Mental Health"
+        },
+        "triglycerides": {
+            "ModelId": "LITRIG_02",
+            "ModelHash": "4b2eaeb81885881635da359c52f94ac6ab373d4ba8791f370bba5fe8",
+            "ModelType": "Complex",
+            "GenomeBuild": "GRCh38",
+            "TraitCategory": "Metabolic Health"
+        },
+        "bladder_cancer": {
+            "ModelId": "BLADCA_02",
+            "ModelHash": "f542ee18059dabcd85d1c515727142241fab2f55b8352da1a72c61c9",
+            "ModelType": "Complex",
+            "GenomeBuild": "GRCh38",
+            "TraitCategory": "Cancer Predisposition"
+        },
+        "celiac_disease": {
+            "ModelId": "CELIAC_02",
+            "ModelHash": "f0364027584d151bbcad060954f12b083284d4cbf1685a1d838c7991",
+            "ModelType": "Complex",
+            "GenomeBuild": "GRCh38",
+            "TraitCategory": "Digestive Health"
+        },
+        "thyroid_cancer": {
+            "ModelId": "THYRCA_02",
+            "ModelHash": "dcc6158d4c37921c41da5223e485e14b951b5d3c263c43766a82a32e",
+            "ModelType": "Complex",
+            "GenomeBuild": "GRCh38",
+            "TraitCategory": "Cancer Predisposition"
+        },
+        "hdl_cholesterol": {
+            "ModelId": "LIHDLC_02",
+            "ModelHash": "1af129f6b91a4f342544dd422fe3aa931701a38d8125b9bfce1d8873",
+            "ModelType": "Complex",
+            "GenomeBuild": "GRCh38",
+            "TraitCategory": "Metabolic Health"
+        },
+        "ldl_cholesterol": {
+            "ModelId": "LILDLC_02",
+            "ModelHash": "cce10f85bdcaa7de21372a3e8d7f546f3653f095e894fc4cfb3cc86a",
+            "ModelType": "Complex",
+            "GenomeBuild": "GRCh38",
+            "TraitCategory": "Metabolic Health"
+        },
+        "nearsightedness": {
+            "ModelId": "MYOPIA_02",
+            "ModelHash": "d73d65a9c297debb6716e3fb9f6a6b550683c1bec03af5136b4c29fa",
+            "ModelType": "Complex",
+            "GenomeBuild": "GRCh38",
+            "TraitCategory": "Sensory Health"
+        },
+        "prostate_cancer": {
+            "ModelId": "PROSTC_02",
+            "ModelHash": "3cc8da36092c4adf2fcec54e3a86addf9c10e14a81fda0b1dbd1ffa5",
+            "ModelType": "Complex",
+            "GenomeBuild": "GRCh38",
+            "TraitCategory": "Cancer Predisposition"
+        },
+        "type_2_diabetes": {
+            "ModelId": "T2DIAB_02",
+            "ModelHash": "2dd166e896b555e721917f6c827e5b6e966116a9fc7d13d498a4929b",
+            "ModelType": "Complex",
+            "GenomeBuild": "GRCh38",
+            "TraitCategory": "Metabolic Health"
+        },
+        "bipolar_disorder": {
+            "ModelId": "BIPOLD_02",
+            "ModelHash": "9269df847726da52e5b8ba70cb99c91bbbf8dd28d8bceac44b8936c6",
+            "ModelType": "Complex",
+            "GenomeBuild": "GRCh38",
+            "TraitCategory": "Mental Health"
+        },
+        "colorectal_cancer": {
+            "ModelId": "COLREC_02",
+            "ModelHash": "0502f42770fe2176eedca025037047f4022dbe597b88fbb454696b2d",
+            "ModelType": "Complex",
+            "GenomeBuild": "GRCh38",
+            "TraitCategory": "Cancer Predisposition"
+        },
+        "esophageal_cancer": {
+            "ModelId": "ESOPCA_02",
+            "ModelHash": "13f2266a947a5ef67721596c7e749afb17290cc6a4020a8d1782149a",
+            "ModelType": "Complex",
+            "GenomeBuild": "GRCh38",
+            "TraitCategory": "Cancer Predisposition"
+        },
+        "pancreatic_cancer": {
+            "ModelId": "PANCRE_02",
+            "ModelHash": "199080491cbdf07445ea452e659dcb977139892a89d403ea38a3f4de",
+            "ModelType": "Complex",
+            "GenomeBuild": "GRCh38",
+            "TraitCategory": "Cancer Predisposition"
+        },
+        "total_cholesterol": {
+            "ModelId": "LITOTC_02",
+            "ModelHash": "80cf2a202d770cad8856aec40dcf643eb2e5b37de5862454a2a67153",
+            "ModelType": "Complex",
+            "GenomeBuild": "GRCh38",
+            "TraitCategory": "Metabolic Health"
+        },
+        "alzheimers_disease": {
+            "ModelId": "ALZHMR_01",
+            "ModelHash": "8dd6aa7cc8e52cded3fdf28e9c4880b618c2e01c84b58a6379884326",
+            "ModelType": "Complex",
+            "GenomeBuild": "GRCh38",
+            "TraitCategory": "Neurological Health"
+        },
+        "dupuytrens_disease": {
+            "ModelId": "DUPUYT_01",
+            "ModelHash": "9f368e6ecd29b2bb1deaf0057137dd8c07bb456aa8c5eb67ea788ef9",
+            "ModelType": "Complex",
+            "GenomeBuild": "GRCh38",
+            "TraitCategory": "Musculoskeletal Health"
+        },
+        "multiple_sclerosis": {
+            "ModelId": "MULTSC_02",
+            "ModelHash": "8c2268fea34c73263653c48bbbf86c29a97c758ea89b55a54c0d9793",
+            "ModelType": "Complex",
+            "GenomeBuild": "GRCh38",
+            "TraitCategory": "Neurological Health"
+        },
+        "parkinsons_disease": {
+            "ModelId": "PARKIN_02",
+            "ModelHash": "16badfd960fa4bfe8d62598bfe19cb23636f78199b6de641bf96707e",
+            "ModelType": "Complex",
+            "GenomeBuild": "GRCh38",
+            "TraitCategory": "Neurological Health"
+        },
+        "atrial_fibrillation": {
+            "ModelId": "ATRFIB_02",
+            "ModelHash": "a3881c81a1749db60ebbfb392280b3a8d9595ca8a1a7561953d3ddfa",
+            "ModelType": "Complex",
+            "GenomeBuild": "GRCh38",
+            "TraitCategory": "Heart and Vascular Health"
+        },
+        "basal_cell_carcinoma": {
+            "ModelId": "BACECA_01",
+            "ModelHash": "1c1d7eb66a574222a4b248e0d48d8b11f8b1d56c11bcb8a8ccab5af6",
+            "ModelType": "Complex",
+            "GenomeBuild": "GRCh38",
+            "TraitCategory": "Cancer Predisposition"
+        },
+        "renal_cell_carcinoma": {
+            "ModelId": "RENCCA_02",
+            "ModelHash": "d95013db7c5618b779f4250fbec1319410a8cdf18fb2620562ac1cf7",
+            "ModelType": "Complex",
+            "GenomeBuild": "GRCh38",
+            "TraitCategory": "Cancer Predisposition"
+        },
+        "rheumatoid_arthritis": {
+            "ModelId": "RHARTH_02",
+            "ModelHash": "770469201410d5f928dc1642294d83b8062ee35a1ef8abf4aad7b641",
+            "ModelType": "Complex",
+            "GenomeBuild": "GRCh38",
+            "TraitCategory": "Musculoskeletal Health"
+        },
+        "venous_thromboembolism": {
+            "ModelId": "VETHEM_02",
+            "ModelHash": "de56432c9e7d3a2f4a074df0937ff01789449f2504774109b495edc8",
+            "ModelType": "Complex",
+            "GenomeBuild": "GRCh38",
+            "TraitCategory": "Heart and Vascular Health"
+        },
+        "coronary_artery_disease": {
+            "ModelId": "CORARD_01",
+            "ModelHash": "de53d928f8297083d437a8a5b51f98030c3ae0e2fbdf18f97b391c80",
+            "ModelType": "Complex",
+            "GenomeBuild": "GRCh38",
+            "TraitCategory": "Heart and Vascular Health"
+        },
+        "inflammatory_bowel_disease": {
+            "ModelId": "INBOWE_02",
+            "ModelHash": "2b6247e873ddc92aec6484b75bfa6ce6d66691536f7dc38c856d6b50",
+            "ModelType": "Complex",
+            "GenomeBuild": "GRCh38",
+            "TraitCategory": "Digestive Health"
+        },
+        "chronic_lymphocytic_leukemia": {
+            "ModelId": "LEUKCH_01",
+            "ModelHash": "d1ccb8884fc62442de76c65f7b751c5cd2dad11cfb9df3c243ab549e",
+            "ModelType": "Complex",
+            "GenomeBuild": "GRCh38",
+            "TraitCategory": "Cancer Predisposition"
+        },
+        "age_related_macular_degeneration": {
+            "ModelId": "MACDEG_02",
+            "ModelHash": "3c664b90bca7778d4718ea4021111519446c4f7df455c1fb39c9f8c5",
+            "ModelType": "Complex",
+            "GenomeBuild": "GRCh38",
+            "TraitCategory": "Sensory Health"
+        }
+    }
+}

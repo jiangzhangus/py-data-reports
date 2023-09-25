@@ -1,0 +1,218 @@
+{
+    "copd": {
+        "relative_risk_lower": 1.1,
+        "relative_risk_upper": 1.1,
+        "polygenic_risk_score": 3.3338,
+        "genetics_risk_percentile": 61
+    },
+    "gout": {
+        "relative_risk_lower": 0.8,
+        "relative_risk_upper": 0.8,
+        "polygenic_risk_score": 1.7771,
+        "genetics_risk_percentile": 32
+    },
+    "asthma": {
+        "relative_risk_lower": null,
+        "relative_risk_upper": null,
+        "polygenic_risk_score": 1.5814,
+        "genetics_risk_percentile": 80
+    },
+    "stroke": {
+        "relative_risk_lower": null,
+        "relative_risk_upper": null,
+        "polygenic_risk_score": 2.0743,
+        "genetics_risk_percentile": 74
+    },
+    "insomnia": {
+        "relative_risk_lower": null,
+        "relative_risk_upper": null,
+        "polygenic_risk_score": 0.077,
+        "genetics_risk_percentile": 12
+    },
+    "melanoma": {
+        "relative_risk_lower": 1.0,
+        "relative_risk_upper": 1.0,
+        "polygenic_risk_score": 3.5502,
+        "genetics_risk_percentile": 57
+    },
+    "osteoporosis": {
+        "relative_risk_lower": 0.5,
+        "relative_risk_upper": 0.5,
+        "polygenic_risk_score": 42.668499999999995,
+        "genetics_risk_percentile": 15
+    },
+    "kidney_stones": {
+        "relative_risk_lower": null,
+        "relative_risk_upper": null,
+        "polygenic_risk_score": 0.3139,
+        "genetics_risk_percentile": 52
+    },
+    "schizophrenia": {
+        "relative_risk_lower": 0.7,
+        "relative_risk_upper": 0.7,
+        "polygenic_risk_score": 11.028300000000002,
+        "genetics_risk_percentile": 17
+    },
+    "triglycerides": {
+        "relative_risk_lower": 1.3,
+        "relative_risk_upper": 1.3,
+        "polygenic_risk_score": 10.2267,
+        "genetics_risk_percentile": 87
+    },
+    "bladder_cancer": {
+        "relative_risk_lower": 1.6,
+        "relative_risk_upper": 1.6,
+        "polygenic_risk_score": 2.5254,
+        "genetics_risk_percentile": 98
+    },
+    "celiac_disease": {
+        "relative_risk_lower": 1.0,
+        "relative_risk_upper": 1.0,
+        "polygenic_risk_score": 7.2404,
+        "genetics_risk_percentile": 52
+    },
+    "thyroid_cancer": {
+        "relative_risk_lower": 1.0,
+        "relative_risk_upper": 1.0,
+        "polygenic_risk_score": 2.7422,
+        "genetics_risk_percentile": 53
+    },
+    "hdl_cholesterol": {
+        "relative_risk_lower": 0.3,
+        "relative_risk_upper": 0.3,
+        "polygenic_risk_score": 12.15355,
+        "genetics_risk_percentile": 7
+    },
+    "ldl_cholesterol": {
+        "relative_risk_lower": 1.1,
+        "relative_risk_upper": 1.2,
+        "polygenic_risk_score": 9.232800000000001,
+        "genetics_risk_percentile": 91
+    },
+    "nearsightedness": {
+        "relative_risk_lower": null,
+        "relative_risk_upper": null,
+        "polygenic_risk_score": 4.831,
+        "genetics_risk_percentile": 88
+    },
+    "prostate_cancer": {
+        "relative_risk_lower": 0.4,
+        "relative_risk_upper": 0.6,
+        "polygenic_risk_score": 10.4072,
+        "genetics_risk_percentile": 9
+    },
+    "type_2_diabetes": {
+        "relative_risk_lower": 0.8,
+        "relative_risk_upper": 0.8,
+        "polygenic_risk_score": 5.231,
+        "genetics_risk_percentile": 24
+    },
+    "bipolar_disorder": {
+        "relative_risk_lower": 1.1,
+        "relative_risk_upper": 1.1,
+        "polygenic_risk_score": 2.0255,
+        "genetics_risk_percentile": 25
+    },
+    "colorectal_cancer": {
+        "relative_risk_lower": 1.2,
+        "relative_risk_upper": 1.2,
+        "polygenic_risk_score": 2.8439,
+        "genetics_risk_percentile": 79
+    },
+    "esophageal_cancer": {
+        "relative_risk_lower": null,
+        "relative_risk_upper": null,
+        "polygenic_risk_score": 1.381,
+        "genetics_risk_percentile": 22
+    },
+    "pancreatic_cancer": {
+        "relative_risk_lower": 1.4,
+        "relative_risk_upper": 1.4,
+        "polygenic_risk_score": 4.5341,
+        "genetics_risk_percentile": 82
+    },
+    "total_cholesterol": {
+        "relative_risk_lower": 1.2,
+        "relative_risk_upper": 1.2,
+        "polygenic_risk_score": 10.0192,
+        "genetics_risk_percentile": 95
+    },
+    "alzheimers_disease": {
+        "relative_risk_lower": 2.9,
+        "relative_risk_upper": 2.9,
+        "polygenic_risk_score": 3.4337,
+        "genetics_risk_percentile": 80
+    },
+    "dupuytrens_disease": {
+        "relative_risk_lower": 0.4,
+        "relative_risk_upper": 0.4,
+        "polygenic_risk_score": 4.0902,
+        "genetics_risk_percentile": 2
+    },
+    "multiple_sclerosis": {
+        "relative_risk_lower": 0.6,
+        "relative_risk_upper": 0.6,
+        "polygenic_risk_score": 9.662,
+        "genetics_risk_percentile": 11
+    },
+    "parkinsons_disease": {
+        "relative_risk_lower": 0.9,
+        "relative_risk_upper": 0.9,
+        "polygenic_risk_score": 3.9646,
+        "genetics_risk_percentile": 37
+    },
+    "atrial_fibrillation": {
+        "relative_risk_lower": 0.8,
+        "relative_risk_upper": 0.8,
+        "polygenic_risk_score": 5.5699,
+        "genetics_risk_percentile": 38
+    },
+    "basal_cell_carcinoma": {
+        "relative_risk_lower": 1.4,
+        "relative_risk_upper": 1.4,
+        "polygenic_risk_score": 4.1491,
+        "genetics_risk_percentile": 89
+    },
+    "renal_cell_carcinoma": {
+        "relative_risk_lower": null,
+        "relative_risk_upper": null,
+        "polygenic_risk_score": 1.297,
+        "genetics_risk_percentile": 63
+    },
+    "rheumatoid_arthritis": {
+        "relative_risk_lower": 0.8,
+        "relative_risk_upper": 0.8,
+        "polygenic_risk_score": 8.9675,
+        "genetics_risk_percentile": 1
+    },
+    "venous_thromboembolism": {
+        "relative_risk_lower": 1.0,
+        "relative_risk_upper": 1.0,
+        "polygenic_risk_score": 1.4902,
+        "genetics_risk_percentile": 42
+    },
+    "coronary_artery_disease": {
+        "relative_risk_lower": 1.1,
+        "relative_risk_upper": 1.1,
+        "polygenic_risk_score": 4.5328,
+        "genetics_risk_percentile": 73
+    },
+    "inflammatory_bowel_disease": {
+        "relative_risk_lower": 1.7,
+        "relative_risk_upper": 1.7,
+        "polygenic_risk_score": 22.4929,
+        "genetics_risk_percentile": 81
+    },
+    "chronic_lymphocytic_leukemia": {
+        "relative_risk_lower": 1.0,
+        "relative_risk_upper": 1.0,
+        "polygenic_risk_score": 6.5024,
+        "genetics_risk_percentile": 40
+    },
+    "age_related_macular_degeneration": {
+        "relative_risk_lower": 1.2,
+        "relative_risk_upper": 1.2,
+        "polygenic_risk_score": 14.0053,
+        "genetics_risk_percentile": 76
+    }
+}
