@@ -19,7 +19,7 @@ finished_line_num = 0
 
 
 # Update with valid token
-prod_token = "9da816c4-4506-7cf0-5f48-0098e4b4b3fc"
+prod_token = "5416f81c-b810-f467-bf65-5f6a0d1f895c"
 # ----------------------------------------------------
 
 # Update to your local path for these files
@@ -27,8 +27,7 @@ subject_csv = "prism_public_subject.csv"
 # subject_csv = "test_subjects.csv"
 active_members_csv = "ActMembers091323.csv"
 
-out_csv_order = "order_list.csv"
-out_csv_subject = "subject_list.csv"
+out_csv = "order_list.csv"
 out_csv_missing = "order_missing_list.csv"
 # -----------------------------------------------
 
@@ -168,40 +167,29 @@ def get_order_product_name(order_product_code):
     raise Exception("get_order_product_name() timeout ")
 
 
-def get_client_type(client_subject_id):
-    if not client_subject_id:
-        return ''
-
+def get_subject_info(client_subject_id: str) -> str:
     url = f"{prism_url}/api/subject?client_subject_id={client_subject_id}"
     payload = {}
     for i in range(retry_limit):
         try:
             response = requests.request("GET", url, headers=headers, data=payload, verify=False)
             if response.status_code == 200:
-                client_type = ''
-                objects = json.loads(response.text)
-                if objects and len(objects) > 0:
-                    client_type = objects[0].get('client_subject_id_type', '')
-                return client_type
+                return response.text
 
-            logger.info(f"get_client_type() got response with code {response.status_code}")
-            logger.info(f"get_client_type() returned: {response.text}")
+            logger.info(f"get_subject_info() got response with code {response.status_code}")
             if response.status_code == 403:
+                logger.error(f"get_subject_info() returned: {response.text}")
                 logger.info("Is the access token expired?")
-
-            elif response.status_code == 404:
-                logger.info(f"Invalid client_subject_id: {client_subject_id}, no data")
-                return ''
 
         except (Exception) as e:
             logger.error(e)
             # traceback.print_exc()
 
         delay = 5 * (i + 1)
-        logger.info(f"get_client_type() Retry {i} with delay {delay} seconds")
+        logger.info(f"get_subject_info() Retry {i} with delay {delay} seconds")
         time.sleep(delay)
 
-    raise Exception("get_client_type() timeout ")
+    raise Exception("get_subject_info() timeout ")
 
 
 active_members_set = set()
@@ -222,165 +210,68 @@ def read_active_member_list():
         logger.info(f"{len(active_members_set)} valid active members loaded")
 
 
-output_order_fields = ['client_subject_id', 'dataset_id', 'crated_on', 'order_reference', 'order_date', 'order_status',
-                       'order_product_version', 'order_product_code', 'order_product_name', 'order_metadata', 'report_name', 'report_path']
-output_subject_fields = ['hli_subject_id', 'client_subject_id', 'client_subject_id_type', 'dob', 'email', 'first_name', 'last_name',
-                         'latest_order_date', 'sex']
+output_field_names = ['hli_subject_id', 'client_subject_id', 'client_subject_id_type', 'dob', 'email', 'first_name', 'last_name', 'latest_order_date', 'sex', 'dataset_id', 'hli_order_reference', 'created_on', 'order_date', 'order_status', 'order_metadata', 'order_product_versions', 'report_name', 'report_path']
 # PN, HLI Order Ref, Order Date, HLI Order -  Product code, HLI Order - Metadata (product name), Report name, Report path
-output_missing_fields = ['client_subject_id', 'dataset_id', 'order_reference', 'order_date', 'order_status',
-                         'order_product_name', 'order_metadata', 'report_name', 'report_path']
 
 
 def write_headers():
     # write headers will overwrite existing data
-    with open(out_csv_subject, 'wt', encoding='utf-8') as csvfile:
-        writer = csv.DictWriter(csvfile, fieldnames=output_subject_fields)
-        writer.writeheader()
-
-    with open(out_csv_order, 'wt', encoding='utf-8') as csvfile:
-        writer = csv.DictWriter(csvfile, fieldnames=output_order_fields)
+    with open(out_csv, 'wt', encoding='utf-8') as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=output_field_names)
         writer.writeheader()
 
     with open(out_csv_missing, 'wt', encoding='utf-8') as csvfile:
-        writer = csv.DictWriter(csvfile, fieldnames=output_missing_fields)
+        writer = csv.DictWriter(csvfile, fieldnames=output_field_names)
         writer.writeheader()
 
 
-def save_results(subjects, orders, missing_orders):
-    with open(out_csv_subject, 'at', encoding='utf-8') as csvfile:
-        writer = csv.DictWriter(csvfile, fieldnames=output_subject_fields)
-        writer.writerows(subjects)
-
-    with open(out_csv_order, 'at', encoding='utf-8') as csvfile:
-        writer = csv.DictWriter(csvfile, fieldnames=output_order_fields)
-        writer.writerows(orders)
+def save_results(output, output_missing):
+    with open(out_csv, 'at', encoding='utf-8') as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=output_field_names)
+        writer.writerows(output)
 
     with open(out_csv_missing, 'at', encoding='utf-8') as csvfile:
-        writer = csv.DictWriter(csvfile, fieldnames=output_missing_fields)
-        writer.writerows(missing_orders)
+        writer = csv.DictWriter(csvfile, fieldnames=output_field_names)
+        writer.writerows(output_missing)
 
 
 product_code2name = dict()
 
 
-def create_order_result(client_subject_id: str, order_reference: dict, dataset_id, report_name, report_path):
+def create_one_result(hli_subject_id, subject_info: dict, order_reference: dict, dataset_id, report_name, report_path) -> dict:
     """
-    order_reference: 'client_subject_id', 'created_on', 'order_reference', 'order_date', 'order_status',
-                     'order_product_version', 'order_product_code', 'order_product_name', 'order_metadata',
-    report_name, report_path
+    ['hli_subject_id', 'client_subject_id', 'client_subject_id_type', 'dob', 'email', 'first_name', 'last_name', 'latest_order_date', 'sex', 'dataset_id',
+     'hli_order_reference', 'created_on', 'order_date', 'order_status', 'order_metadata', 'order_product_versions',
+     'report_name', 'report_path']
     """
+    if not subject_info:
+        raise Exception("create_one_result(): subject_info is a required parameter of dict type")
 
-    if not order_reference:
-        logger.error("create_order_result(): order_reference parameter is required")
-        return {}
-
-    result = {
-        "client_subject_id": client_subject_id,
-        "dataset_id": dataset_id,
-        "report_name": report_name,
-        "report_path": report_path
-    }
-
-    order_product_code = ''
-    order_product_name = ''
-    result["product_version"] = order_product_versions = order_reference.get('product_versions', '')
-
-    if order_product_versions:
-        order_product_code = order_product_versions[0].get('product_code', '')
-    if order_product_code:
-        if order_product_code in product_code2name:  # try to use cache first
-            order_product_name = product_code2name[order_product_code]
-        else:  # use API to query and save to cache
-            json_values = json.loads(get_order_product_name(order_product_code))
-            if json_values:
-                order_product_name = json_values.get('product_description', '')
-                product_code2name[order_product_code] = order_product_name
-
-    result["created_on"] = order_reference["created_on"]
-    result["order_reference"] = order_reference['hli_order_reference']
-    result["order_date"] = order_reference["order_date"]
-    result["order_status"] = order_reference.get('order_status', '')
-    result["order_product_code"] = order_product_code
-    result["order_product_name"] = order_product_name
-    result["order_metadata"] = order_reference.get('order_metadata', '')
-
-    return result
-
-
-def create_subject_result(hli_subject_id, client_subject_id, client_subject_id_type, dob, email, first_name, last_name,
-                          latest_order_date, sex):
-    """
-    subject_info: hli_subject_id, client_subject_id, client_subject_id_type,
-                  'dob', 'email', 'first_name', 'last_name', 'latest_order_date', 'sex'
-    """
     result = {
         "hli_subject_id": hli_subject_id,
-        "client_subject_id": client_subject_id,
-        "client_subject_id_type": client_subject_id_type,
-        "dob": dob,
-        "email": email,
-        "first_name": first_name,
-        "last_name": last_name,
-        "latest_order_date": latest_order_date,
-        "sex": sex
-    }
-    return result
+        "client_subject_id": subject_info.get("client_subject_id", ""),
+        "client_subject_id_type": subject_info.get("client_subject_id_type", ""),
+        "dob": subject_info.get("dob", ""),
+        "email": subject_info.get("email", ""),
+        "first_name": subject_info.get("first_name", ""),
+        "last_name": subject_info.get("last_name", ""),
+        "latest_order_date": subject_info.get("last_order_data", ""),
+        "sex": subject_info.get("sex"),
 
-
-def create_missing_result(client_subject_id, dataset_id, order_reference, report_name, report_path):
-    """
-    output_missing_fields = ['client_subject_id', 'dataset_id', 'order_reference', 'order_date', 'order_status',
-                             'order_product_name', 'order_metadata', 'report_name', 'report_path']
-    """
-    if not order_reference:
-        logger.error("create_missing_result(): order_reference parameter is required")
-        return {}
-
-    result = {
-        "client_subject_id": client_subject_id,
         "dataset_id": dataset_id,
+
+        "hli_order_reference": order_reference.get('hli_order_reference', ""),
+        "created_on": order_reference.get("created_on", ""),
+        "order_date": order_reference.get("order_date", ""),
+        "order_status": order_reference.get('order_status', ""),
+        "order_metadata": order_reference.get('order_metadata', {}),
+        "order_product_versions": order_reference.get('product_versions', {}),
+
         "report_name": report_name,
         "report_path": report_path
     }
 
-    order_product_name = ''
-    if order_product_versions := order_reference.get('product_versions', ''):
-        if order_product_code := order_product_versions[0].get('product_code', ''):
-            if order_product_code in product_code2name:  # try to use cache first
-                order_product_name = product_code2name[order_product_code]
-            else:  # use API to query and save to cache
-                json_values = json.loads(get_order_product_name(order_product_code))
-                if json_values:
-                    order_product_name = json_values.get('product_description', '')
-                    product_code2name[order_product_code] = order_product_name
-
-    result["created_on"] = order_reference["created_on"]
-    result["order_reference"] = order_reference['hli_order_reference']
-    result["order_status"] = order_reference.get('order_status', '')
-    result["order_product_name"] = order_product_name
-    result["order_metadata"] = order_reference.get('order_metadata', '')
-
     return result
-
-# result["product_version"] = order_product_versions = order_reference.get('product_versions', '')
-# if order_product_versions:
-#     order_product_code = order_product_versions[0].get('product_code', '')
-# if order_product_code:
-#     if order_product_code in product_code2name:  # try to use cache first
-#         order_product_name = product_code2name[order_product_code]
-#     else:  # use API to query and save to cache
-#         json_values = json.loads(get_order_product_name(order_product_code))
-#         if json_values:
-#             order_product_name = json_values.get('product_description', '')
-#             product_code2name[order_product_code] = order_product_name
-
-# result["created_on"] = order_reference["created_on"]
-# result["order_reference"] = order_reference['hli_order_reference']
-# result["order_date"] = order_reference["order_date"]
-# result["order_status"] = order_reference.get('order_status', '')
-# result["order_product_code"] = order_product_code
-# result["order_product_name"] = order_product_name
-# result["order_metadata"] = order_reference.get('order_metadata', '')
 
 
 def process_one_row(row):
@@ -391,29 +282,23 @@ def process_one_row(row):
     hli_subject_id = row[1]
     client_subject_id = row[2]
 
-    # order_reference = {}
-
     try:
-        client_subject_id_type = get_client_type(client_subject_id)
+        subject_info_items = json.loads(get_subject_info(client_subject_id))
+        if not subject_info_items or not subject_info_items[0]:
+            # raise Exception(f"Cannot find client_subject_id {client_subject_id}")
+            return ([], [])
+
+        subject_info = subject_info_items[0]
+
         orders = get_subject_order_list(hli_subject_id)
         if not orders:
             logger.info(f"{line_num :4s} subject_id {hli_subject_id} done, no order found")
-
-            order_reference = {
-                "product_versions": '',
-                "created_on": '',
-                "hli_order_reference": '',
-                "order_date": '',
-                "order_status": '',
-                "order_product_code": '',
-                "order_product_name": '',
-                "order_metadata": ''
-            }
-
-            result = create_order_result(client_subject_id, order_reference, '', '', '')
+            # create_one_result(hli_subject_id, subject_info, order_reference, dataset_id, report_name, report_path)
+            result = create_one_result(hli_subject_id, subject_info, {}, '', '', '')
             if client_subject_id in active_members_set:
                 output_missing.append(result)
-            output_  .append(result)
+            output.append(result)
+            return (output, output_missing)
 
         for order_ref in orders:
             hli_order_reference = order_ref["hli_order_reference"]
@@ -424,12 +309,11 @@ def process_one_row(row):
                 dataset_id = ""
                 report_name = ""
                 s3_pdf_path = ""
-                result = create_order_result(order_ref, dataset_id, client_subject_id, client_subject_id_type, report_name, s3_pdf_path)
+                result = create_one_result(hli_subject_id, subject_info, order_ref, dataset_id, report_name, s3_pdf_path)
                 if client_subject_id in active_members_set:
-                    result = create_missing_result(client_subject_id, '', order_reference, '', '')
                     output_missing.append(result)
                 else:
-                    logger.info(f"     -- member {client_subject_id} is not an active member")
+                    logger.info(f"     -- PN {client_subject_id} is not an active member")
 
                 output.append(result)
 
@@ -442,7 +326,7 @@ def process_one_row(row):
                     report_name = dataset['metadata']['report_name']
                     s3_pdf_path = dataset['path']
                     dataset_id = dataset['id']
-                    result = create_one_result(order_ref, dataset_id, client_subject_id, client_subject_id_type, report_name, s3_pdf_path)
+                    result = create_one_result(hli_subject_id, subject_info, order_ref, dataset_id, report_name, s3_pdf_path)
                     output.append(result)
 
                 # logger.info(f"{row[0] :4s} subject_id {row[1]} done with {datasets_count} dataset(s)")
