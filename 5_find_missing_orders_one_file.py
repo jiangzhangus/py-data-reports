@@ -19,7 +19,7 @@ finished_line_num = 0
 
 
 # Update with valid token
-prod_token = "92daf9b7-a0c9-00e9-be9e-c697a8602115"
+prod_token = "cbd7d53b-91ec-7a34-ca6d-2d66870f4e1b"
 # ----------------------------------------------------
 
 # Update to your local path for these files
@@ -260,7 +260,7 @@ def create_one_result(hli_subject_id, subject_info: dict, order_reference: dict,
         "email": subject_info.get("email", ""),
         "first_name": subject_info.get("first_name", ""),
         "last_name": subject_info.get("last_name", ""),
-        "latest_order_date": subject_info.get("last_order_data", ""),
+        "latest_order_date": subject_info.get("lastest_order_date", ""),
         "sex": subject_info.get("sex"),
 
         "dataset_id": dataset_id,
