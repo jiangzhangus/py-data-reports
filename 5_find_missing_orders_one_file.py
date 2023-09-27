@@ -19,7 +19,7 @@ finished_line_num = 0
 
 
 # Update with valid token
-prod_token = "5416f81c-b810-f467-bf65-5f6a0d1f895c"
+prod_token = "92daf9b7-a0c9-00e9-be9e-c697a8602115"
 # ----------------------------------------------------
 
 # Update to your local path for these files
@@ -177,9 +177,14 @@ def get_subject_info(client_subject_id: str) -> str:
                 return response.text
 
             logger.info(f"get_subject_info() got response with code {response.status_code}")
+
             if response.status_code == 403:
                 logger.error(f"get_subject_info() returned: {response.text}")
                 logger.info("Is the access token expired?")
+
+            elif response.status_code == 404:
+                logger.info(f"Invalid client_subject_id: {client_subject_id}, no data")
+                return '{}'
 
         except (Exception) as e:
             logger.error(e)
@@ -285,7 +290,7 @@ def process_one_row(row):
     try:
         subject_info_items = json.loads(get_subject_info(client_subject_id))
         if not subject_info_items or not subject_info_items[0]:
-            # raise Exception(f"Cannot find client_subject_id {client_subject_id}")
+            logger.error(f"Cannot find client_subject_id {client_subject_id}")
             return ([], [])
 
         subject_info = subject_info_items[0]
