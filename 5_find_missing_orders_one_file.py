@@ -19,7 +19,7 @@ finished_line_num = 0
 
 
 # Update with valid token
-prod_token = "56d831ce-42b1-d8b2-e86a-8e51ead43283"
+prod_token = "4d605aa5-63d1-dd25-b7ae-a24bdd11d8e8"
 # ----------------------------------------------------
 
 # Update to your local path for these files
@@ -328,9 +328,14 @@ def process_one_row(row):
                 logger.info(f"{row[0] :4s} subject_id {row[1]}, order_ref {hli_order_reference}, {datasets_count} dataset(s) found")
 
                 for dataset in datasets['datasets']:
-                    report_name = dataset['metadata']['report_name']
-                    s3_pdf_path = dataset['path']
-                    dataset_id = dataset['id']
+                    report_name = ''
+                    if metadata := dataset.get("metadata", ""):
+                        report_name = metadata.get("report_name")
+                    else:
+                        continue
+                    # report_name = dataset['metadata']['report_name']
+                    s3_pdf_path = dataset.get("path", "")
+                    dataset_id = dataset.get("dataset_id", "")
                     result = create_one_result(hli_subject_id, subject_info, order_ref, dataset_id, report_name, s3_pdf_path)
                     output.append(result)
 
@@ -343,7 +348,7 @@ def process_one_row(row):
                 output_missing = []
 
     except (Exception) as e:
-        logger.error(e)
+        logger.error(f"process_one_row() got exception {e}")
         traceback.print_exc()
 
     return (output, output_missing)
